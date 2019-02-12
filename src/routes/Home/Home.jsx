@@ -20,7 +20,24 @@ export class Home extends Component {
     };
     this.customRoute = this.customRoute.bind(this);
   }
-  componentDidMount() {}
+  componentDidMount() {
+
+    window.document.body.addEventListener(
+      "touchmove",
+      function(e) {
+        e.preventDefault();
+      },
+      false
+    );
+    window.document.body.addEventListener(
+      "ondragstart",
+      function(e) {
+        return false;
+      },
+      false
+    );
+
+  }
   customRoute(){
     switch (this.state.stageStatus) {
       default:

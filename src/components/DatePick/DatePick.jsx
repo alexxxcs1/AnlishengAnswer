@@ -80,13 +80,21 @@ GetMaxDate(year, month) {
     return d.getDate();
 }
 Select(day){
-    let daydate = new Date(day);
-
+    let mindaydate = new Date(day);
+    let maxdaydate = new Date(day);
     if(this.state.minDate){
-        if (daydate.getTime()<this.state.minDate.getTime()) return;
+        let minDate = new Date(this.state.minDate.getTime());
+        mindaydate.setHours(24);
+        mindaydate.setMinutes(0);
+        mindaydate.setSeconds(0);
+        if (mindaydate.getTime()<minDate.getTime()) return;
     }        
     if(this.state.maxDate){
-        if (daydate.getTime()>this.state.maxDate.getTime()) return;
+        let maxDate = new Date(this.state.maxDate);
+        mindaydate.setHours(0);
+        mindaydate.setMinutes(0);
+        mindaydate.setSeconds(0);
+        if (maxdaydate.getTime()>maxDate.getTime()) return;
     }
     
     this.state.selected = day;
@@ -133,10 +141,12 @@ ChangeMonth(cutnum){
     let beforeday = new Date(this.state.today.getTime());
     
     if(this.state.minDate){
-        if (new Date(beforeday.setMonth(today.getMonth()+cutnum)).getTime()<new Date(this.state.minDate.setDate(1)).getTime()) return;
+        let minDate = new Date(this.state.minDate.getTime());
+        if (new Date(beforeday.setMonth(today.getMonth()+cutnum)).getTime()<new Date(minDate.setDate(1)).getTime()) return;
     }        
     if(this.state.maxDate){
-        if (new Date(futerday.setMonth(today.getMonth()+cutnum)).getTime()>this.state.maxDate.getTime()) return;
+        let maxDate = new Date(this.state.maxDate.getTime());
+        if (new Date(futerday.setMonth(today.getMonth()+cutnum)).getTime()>maxDate.getTime()) return;
     }
     this.state.today = new Date(today.setMonth(today.getMonth()+cutnum));
     this.setState(this.state);

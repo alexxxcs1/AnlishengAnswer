@@ -1,22 +1,32 @@
 import React, { Component } from 'react'
 import style from './DateView.scss'
 import resultbkg from 'assets/resultbkg.png'
+import rings from 'assets/rings.png'
+import rollcorner from 'assets/rollcorner.png'
+import slidetips from 'assets/slidetips.png'
+import buttonicon from 'assets/buttonicon.png'
 import DatePick from 'components/DatePick'
   
+let touchstartPosY = null;
 export class DateView extends Component {
 constructor(props) {
-  super(props);
-  this.state = {
-      PickDate:null,
-  };
-     this.refreshProps = this.refreshProps.bind(this);
-     this.DatePicked = this.DatePicked.bind(this);
+    super(props);
+    this.state = {
+        onTouch:false,
+        PickDate:null,
+        HourValue:0,
+    };
+    this.refreshProps = this.refreshProps.bind(this);
+    this.DatePicked = this.DatePicked.bind(this);
+    this.onHourTouchStart = this.onHourTouchStart.bind(this);
+    this.onHourTouchMove = this.onHourTouchMove.bind(this);
+    this.onHourTouchEnd = this.onHourTouchEnd.bind(this);
 }
 componentWillReceiveProps(nextprops) {
-  this.refreshProps(nextprops);
+    this.refreshProps(nextprops);
 }
 componentDidMount() {
-  this.refreshProps(this.props);
+    this.refreshProps(this.props);
 }
 refreshProps(props) {
   
@@ -25,17 +35,71 @@ DatePicked(date){
     this.state.PickDate = date;
     this.setState(this.state);
 }
+onHourTouchStart(e)
+{
+    touchstartPosY = e.touches[0].clientY;
+    this.state.onTouch = true;
+    this.setState(this.state);
+}
+onHourTouchMove(e)
+{
+    let posY = e.touches[0].clientY;
+    let num = posY - touchstartPosY;
+    this.state.onTouch = true;
+    if (num>30) {
+        touchstartPosY = posY;
+        this.state.HourValue -= 1;
+        if(this.state.HourValue<0) this.state.HourValue = 23;
+    }else if(num<-30){
+        touchstartPosY = posY;
+        this.state.HourValue += 1;
+        if(this.state.HourValue>23) this.state.HourValue = 0;
+    }
+    this.setState(this.state);
+}
+onHourTouchEnd(e)
+{
+    touchstartPosY = null;
+    this.state.onTouch = false;
+    this.setState(this.state);
+}
 render() {
   return (
     <div className={[style.ViewBox, "childcenter childcolumn"].join(" ")}>
-        <div className={style.DateContent}>
+        <div className={[style.DateContent, "childcenter childcolumn"].join(" ")}>
             <div className={[style.DateBox,'childcenter childcolumn childcontentstart'].join(' ')}>
-                <DatePick onSelect={this.DatePicked} minDate={new Date()}/>
+                <DatePick onSelect={this.DatePicked} minDate={new Date()}/> 
                 <div className={style.TimeBox}>
-                    
+                    <div className={[style.RingGroup,'childcenter'].join(' ')}>
+                        <img src={rings} alt=""/>
+                    </div>
+                    <div className={[style.TimeContent,'childcenter'].join(' ')} onTouchStart={this.onHourTouchStart} onTouchMove={this.onHourTouchMove} onTouchEnd={this.onHourTouchEnd}>
+                        <div className={[style.SlideTips,this.state.onTouch?style.onTouch:'','childcenter'].join(' ')}>
+                            滑动改变时间
+                        </div>
+                        <div className={style.Hour}>
+                            小时
+                        </div>
+                        <div className={style.HourHandle}>
+                            {this.state.HourValue<10?'0'+this.state.HourValue:this.state.HourValue}:00
+                        </div>
+                        {/* <img src={slidetips} className={style.slidetips} alt=""/> */}
+                    </div>
+                    <div className={style.RollCorner}>
+                        <img src={rollcorner} alt=""/>
+                    </div>
                 </div>
             </div>
+            
             <img src={resultbkg} className={style.resultbkg} alt=""/>
+        </div>
+        <div className={[style.Button,'childcenter'].join(' ')}>
+            <div className={[style.ButtonIconBox, "childcenter"].join(" ")}>
+                <img src={buttonicon} className={style.ButtonIcon} alt="" />
+            </div>
+            <div className={[style.ButtonValue, "childcenter"].join(" ")}>
+                提交
+            </div>
         </div>
     </div>
    )

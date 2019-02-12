@@ -18,37 +18,125 @@
                 background: #e6e7e7;
                 border-radius: 15px;
                 position: relative;
-                box-shadow: #bec0c2 0 3px 0,
-                #dddcdc 0 5px 0,
-                #bec0c2 0 7px 0,
-                #dddcdc 0 9px 0,
-                #bec0c2 0 11px 0,
-                #dddcdc 0 13px 0,
-                #bec0c2 0 15px 0,
-                #dddcdc 0 17px 0,
-                #bec0c2 0 19px 0,
-                #dddcdc 0 21px 0,
-                #bec0c2 0 23px 0,
-                #dddcdc 0 25px 0,
-                #bec0c2 0 27px 0,
-                #dddcdc 0 29px 0,
-                #bec0c2 0 31px 0,
-                #dddcdc 0 33px 0,
-                #bec0c2 0 35px 0,;
-                overflow: hidden;
-                &::after{
+                margin-top: 30px;
+                box-shadow:
+                #dddcdc 0 3px 0,
+                #bec0c2 0 4px 0,
+                #dddcdc 0 7px 0,
+                #bec0c2 0 8px 0,
+                #dddcdc 0 12px 0,
+                #bec0c2 0 13px 0,
+                #dddcdc 0 15px 0,
+                #bec0c2 0 16px 0,
+                #dddcdc 0 19px 0,
+                #bec0c2 0 20px 0;
+                // #dddcdc 0 25px 0,
+                // #bec0c2 0 27px 0,
+                // #dddcdc 0 29px 0,
+                // #bec0c2 0 31px 0,
+                // #dddcdc 0 33px 0,
+                // #bec0c2 0 35px 0,;
+                .RingGroup{
+                    width: 100%;
+                    height: 25px;
                     position: absolute;
-                    content: '';
-                    bottom: 0px;
+                    top: 0px;
+                    left: 0px;
+                    transform: translateY(-40%);
+                    pointer-events: none;
+                }
+                .TimeContent{
+                    width: 100%;
+                    height: calc(100% - 10px);
+                    margin-top: 10px;
+                    border-radius: 15px;
+                    user-select: none;
+                    &::after{
+                        position: absolute;
+                        content: '';
+                        background: radial-gradient(rgba(0,0,0,0.1) 0%,transparent 60%);
+                        border-radius: 100%;
+                        bottom: -71px;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        width: 237px;
+                        height: 27px;
+                    }
+                    .Hour{
+                        font-size: 33px;
+                        font-weight: bold;
+                        color: #464646;
+                        margin: 0 13px;
+                    }
+                    .HourHandle{
+                        font-size: 42px;
+                        font-weight: bold;
+                        color: #004889;
+                        margin: 0 13px;
+                    }
+                    .SlideTips{
+                        position: fixed;
+                        top: 50%;
+                        left: 50%;
+                        transform: translateX(-50%) translateY(-50%);
+                        width: 400px;
+                        height: 100px;
+                        border-radius: 15px;
+                        background: rgba($color: #000, $alpha: 0.6);
+                        color: #fff;
+                        font-size: 30px;
+                        opacity: 0;
+                        pointer-events: none;
+                    }
+                    .onTouch{
+                        opacity: 1;
+                    }
+                }
+                .RollCorner{
+                    width: 58px;
+                    height: 58px;
+                    position: absolute;
                     right: 0px;
-                    width: 52px;
-                    height: 52px;
-                    background: radial-gradient(ellipse 250px 250px at 50% 0%,transparent 0%,transparent 10%,#f5f5f6 10%);
-                    border-radius: 100% 0 100% 0;
-                    filter: drop-shadow(0px 4px 4px #999);
+                    bottom: 0px;
+                    pointer-events: none;
+                    overflow: hidden;
+                    border-radius: 0 0 15px 0;
+                    img{
+                        width: 100%;
+                        display: block;
+                    }
+                }
+                // .RollCorner{
+                //     width: 100%;
+                //     height: 100%;
+                //     position: absolute;
+                //     left: 0px;
+                //     bottom: 0px;
+                //     overflow: hidden;
+                //     &::after{
+                //         position: absolute;
+                //         content: '';
+                //         bottom: 1px;
+                //         right: 0px;
+                //         width: 60px;
+                //         height: 52px;
+                //         background: radial-gradient(ellipse 250px 250px at 60% -15%,transparent 0%,transparent 10%,#f5f5f6 10%);
+                //         border-radius: 100% 0 100% 0;
+                //         filter: drop-shadow(0px 4px 4px #999);
+                //     }
+                // }
+
+                .RingGroup{
+                    width: 100%;
+
+                    img{
+                        width: 266px;
+                        display: block;
+                    }
                 }
             }
         }
+        
         .resultbkg{
             width: 537px;
             position: absolute;
@@ -56,6 +144,28 @@
             left: 50%;
             transform: translateX(-50%);
             z-index: -1;
+        }
+    }
+    .Button{
+        width: 329px;
+        height: 60px;
+        margin-top: 50px;
+        background: #185aa0;
+        border-radius: 30px;
+        .ButtonIconBox{
+            width: 50px;
+            height: 100%;
+
+            .ButtonIcon{
+                width: 101px;
+            }
+        }
+        .ButtonValue{
+            width: calc(100% - 50px);
+            height: 100%;
+            font-size: 31px;
+            color: #fff;
+            letter-spacing: 32px;
         }
     }
 }
