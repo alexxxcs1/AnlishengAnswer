@@ -1,0 +1,39 @@
+.ViewBox{
+    width: 100%;
+    height: 100%;
+
+    .ResultBox{
+        width: 551px;
+        img{
+            display: block;
+            width: 590px;
+        }
+    }
+    .ButtonGroup{
+        width: 100%;
+        margin-top: 80px;
+        .Button{
+            width: 270px;
+            height: 60px;
+            background: #185aa0;
+            border-radius: 30px;
+            margin-left: 50px;
+            .ButtonIconBox{
+                width: 50px;
+                height: 100%;
+    
+                .ButtonIcon{
+                    width: 101px;
+                }
+            }
+            .ButtonValue{
+                width: calc(100% - 50px);
+                height: 100%;
+                font-size: 31px;
+                color: #fff;
+                letter-spacing: 2px;
+            }
+        }
+    }
+    
+}

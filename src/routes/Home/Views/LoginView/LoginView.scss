@@ -1,0 +1,77 @@
+.ViewBox{
+    width: 100%;
+    height: 100%;
+
+    .TitleBox{
+        width: 433px;
+        margin-bottom: 49px;
+        animation: TitleEffe 0.5s forwards;
+        img{
+            width: 100%;
+        }
+    }
+    @keyframes TitleEffe {
+        0%{
+            transform: scale(0);
+        }
+        100%{
+            transform: scale(1);
+        }
+    }
+
+    .FormBox{
+        width: 392px;
+        animation: TitleEffe 0.5s forwards;
+        .FormInput{
+            width: 100%;
+            height: 66px;
+            margin: 8px 0px;
+            box-shadow: #c2c3c3 0 0 0 1px inset,#fff 0 0 0 2px inset,;
+            border-radius: 5px;
+            background: linear-gradient(#e1e2e2 10%,#f7f8f8);
+
+            .InputIcon{
+                width: 70px;
+                height: 100%;
+                img{
+                    width: 36px;
+                }
+            }
+            .InputBox{
+                width: calc(100% - 70px);
+                height: 100%;
+                input{
+                    display: block;
+                    width: 100%;
+                    height: 100%;
+                    outline: none;
+                    background: transparent;
+                    text-indent: 10px;
+                }
+            }
+        }
+        .LoginButton{
+            width: 330px;
+            height: 60px;
+            margin-top: 60px;
+            background: #185aa0;
+            border-radius: 30px;
+
+            .ButtonIconBox{
+                width: 70px;
+                height: 100%;
+
+                .ButtonIcon{
+                    width: 101px;
+                }
+            }
+            .ButtonValue{
+                width: calc(100% - 70px);
+                height: 100%;
+                font-size: 31px;
+                color: #fff;
+                letter-spacing: 15px;
+            }
+        }
+    }
+}

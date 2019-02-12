@@ -1,0 +1,33 @@
+.ViewBox{
+    width: 100%;
+    height: 100%;
+
+    .TitleBox{
+        width: 568px;
+        margin-bottom: 120px;
+        img{
+            width: 100%;
+        }
+    }
+    .RuleButton{
+        width: 275px;
+        height: 60px;
+        background: #185aa0;
+        border-radius: 30px;
+        .ButtonIconBox{
+            width: 70px;
+            height: 100%;
+
+            .ButtonIcon{
+                width: 101px;
+            }
+        }
+        .ButtonValue{
+            width: calc(100% - 70px);
+            height: 100%;
+            font-size: 31px;
+            color: #fff;
+            letter-spacing: 2px;
+        }
+    }
+}

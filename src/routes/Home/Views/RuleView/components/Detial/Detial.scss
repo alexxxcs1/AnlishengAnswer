@@ -1,0 +1,49 @@
+.ViewBox{
+    width: 100%;
+    height: 100%;
+
+    .PublicTitle{
+        width: 503px;
+        img{
+            width: 100%;
+        }
+    }
+    .InfoBox{
+        width: 643px;
+        p:nth-child(1){
+            margin: 40px 0px 25px 0;
+            font-size: 30px;
+            color: #d21374;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+        p:nth-child(2),p:nth-child(3){
+            color: #595757;
+            font-size: 28px;
+            font-weight: 250;
+            line-height: 53px;
+        }
+    }
+    .RuleButton{
+        width: 330px;
+        height: 60px;
+        background: #185aa0;
+        border-radius: 30px;
+        margin-top: 100px;
+        .ButtonIconBox{
+            width: 70px;
+            height: 100%;
+
+            .ButtonIcon{
+                width: 101px;
+            }
+        }
+        .ButtonValue{
+            width: calc(100% - 70px);
+            height: 100%;
+            font-size: 31px;
+            color: #fff;
+            letter-spacing: 2px;
+        }
+    }
+}
