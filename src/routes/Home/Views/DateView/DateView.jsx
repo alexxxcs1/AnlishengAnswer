@@ -6,6 +6,7 @@ import rollcorner from 'assets/rollcorner.png'
 import slidetips from 'assets/slidetips.png'
 import buttonicon from 'assets/buttonicon.png'
 import DatePick from 'components/DatePick'
+import DarkBox from 'components/DarkBox'
   
 let touchstartPosY = null;
 export class DateView extends Component {
@@ -14,13 +15,19 @@ constructor(props) {
     this.state = {
         onTouch:false,
         PickDate:null,
-        HourValue:0,
+        HourValue:new Date().getHours(),
+        AlertOption:{
+            show:false,
+            value:'',
+            callback:()=>{},
+        }
     };
     this.refreshProps = this.refreshProps.bind(this);
     this.DatePicked = this.DatePicked.bind(this);
     this.onHourTouchStart = this.onHourTouchStart.bind(this);
     this.onHourTouchMove = this.onHourTouchMove.bind(this);
     this.onHourTouchEnd = this.onHourTouchEnd.bind(this);
+    this.submit = this.submit.bind(this);
 }
 componentWillReceiveProps(nextprops) {
     this.refreshProps(nextprops);
@@ -46,6 +53,7 @@ onHourTouchMove(e)
     let posY = e.touches[0].clientY;
     let num = posY - touchstartPosY;
     this.state.onTouch = true;
+    let nowHour = new Date().getHours();
     if (num>30) {
         touchstartPosY = posY;
         this.state.HourValue -= 1;
@@ -63,9 +71,33 @@ onHourTouchEnd(e)
     this.state.onTouch = false;
     this.setState(this.state);
 }
+submit(){
+    let self = this;
+    this.state.AlertOption={
+        show:true,
+        value:'您已经没有机会了',
+        callback:()=>{
+            self.state.AlertOption={
+                show:false,
+                value:'',
+                callback:()=>{},
+            }
+            self.setState(self.state);
+        },
+    }
+    this.setState(this.state);
+}
 render() {
   return (
     <div className={[style.ViewBox, "childcenter childcolumn"].join(" ")}>
+        {this.state.AlertOption.show?<DarkBox>
+            <div className={style.AlertBox}>
+                <div className={style.CloseButton} onClick={this.state.AlertOption.callback}></div>
+                <div className={[style.ContentValue,'childcenter'].join(' ')}>
+                    {this.state.AlertOption.value}
+                </div>
+            </div>
+        </DarkBox>:''}
         <div className={[style.DateContent, "childcenter childcolumn"].join(" ")}>
             <div className={[style.DateBox,'childcenter childcolumn childcontentstart'].join(' ')}>
                 <DatePick onSelect={this.DatePicked} minDate={new Date()}/> 
@@ -97,7 +129,7 @@ render() {
             <div className={[style.ButtonIconBox, "childcenter"].join(" ")}>
                 <img src={buttonicon} className={style.ButtonIcon} alt="" />
             </div>
-            <div className={[style.ButtonValue, "childcenter"].join(" ")}>
+            <div className={[style.ButtonValue, "childcenter"].join(" ")} onClick={this.submit}>
                 提交
             </div>
         </div>
