@@ -44,17 +44,17 @@ export class Home extends Component {
       case 0:
         return <LoginView />;
       case 1:
-        return  <RuleView />;
+        return <RuleView />;
       case 2:
-        return  <QuestionViewOne />;
+        return <QuestionViewOne />;
       case 3:
-        return  <QuestionViewTwo />;
+        return <QuestionViewTwo />;
       case 4:
-        return  <QuestionViewThree />;
+        return <QuestionViewThree />;
       case 5:
-        return  <QuestionViewFour />;
+        return <QuestionViewFour />;
       case 6:
-        return  <QuestionViewFive />;
+        return <QuestionViewFive />;
       case 7:
         return <ResultView />
       case 8:
