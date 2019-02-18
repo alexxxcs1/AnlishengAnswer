@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from "prop-types";
 import style from './ResultView.scss'
 import result from 'assets/result.png'
 import buttonicon from 'assets/buttonicon.png'
@@ -8,6 +9,7 @@ constructor(props) {
   super(props);
   this.state = {};
      this.refreshProps = this.refreshProps.bind(this);
+     this.GuessDate = this.GuessDate.bind(this);
 }
 componentWillReceiveProps(nextprops) {
   this.refreshProps(nextprops);
@@ -17,6 +19,9 @@ componentDidMount() {
 }
 refreshProps(props) {
   
+}
+GuessDate(){
+    this.context.HandleRoute(8);
 }
 render() {
   return (
@@ -37,7 +42,7 @@ render() {
                 <div className={[style.ButtonIconBox, "childcenter"].join(" ")}>
                     <img src={buttonicon} className={style.ButtonIcon} alt="" />
                 </div>
-                <div className={[style.ButtonValue, "childcenter"].join(" ")}>
+                <div className={[style.ButtonValue, "childcenter"].join(" ")} onClick={this.GuessDate}>
                     年终大竞猜
                 </div>
             </div>
@@ -46,4 +51,7 @@ render() {
    )
    }
 }
+ResultView.contextTypes = {
+    HandleRoute: PropTypes.func
+  };
 export default ResultView

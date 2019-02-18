@@ -38,7 +38,7 @@ render() {
                     <img src={questionicon} alt=""/>
                 </div>
                 <div className={[style.QuetionValue,'childcenter childcolumn childalignstart'].join(' ')}>
-                    <p>时间穿梭回第一亿，</p>
+                    <p>1时间穿梭回第一亿，</p>
                     <p>2018年，安理申的市场策略是？</p>
                 </div>
                 

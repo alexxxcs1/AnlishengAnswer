@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from "prop-types";
 import style from './DateView.scss'
 import resultbkg from 'assets/resultbkg.png'
 import rings from 'assets/rings.png'
@@ -7,12 +8,16 @@ import slidetips from 'assets/slidetips.png'
 import buttonicon from 'assets/buttonicon.png'
 import DatePick from 'components/DatePick'
 import DarkBox from 'components/DarkBox'
+
+import {api} from 'common/app'
   
 let touchstartPosY = null;
 export class DateView extends Component {
 constructor(props) {
     super(props);
     this.state = {
+        guesstime:0,
+        picktime:0,
         onTouch:false,
         PickDate:null,
         HourValue:new Date().getHours(),
@@ -34,6 +39,7 @@ componentWillReceiveProps(nextprops) {
 }
 componentDidMount() {
     this.refreshProps(this.props);
+    this.getPickTime();
 }
 refreshProps(props) {
   
@@ -54,11 +60,11 @@ onHourTouchMove(e)
     let num = posY - touchstartPosY;
     this.state.onTouch = true;
     let nowHour = new Date().getHours();
-    if (num>30) {
+    if (num > 30) {
         touchstartPosY = posY;
         this.state.HourValue -= 1;
         if(this.state.HourValue<0) this.state.HourValue = 23;
-    }else if(num<-30){
+    }else if(num < -30){
         touchstartPosY = posY;
         this.state.HourValue += 1;
         if(this.state.HourValue>23) this.state.HourValue = 0;
@@ -71,21 +77,100 @@ onHourTouchEnd(e)
     this.state.onTouch = false;
     this.setState(this.state);
 }
+getPickTime(){
+    api.getCountTime().then(res=>{
+        console.log(res);
+        if (res.code == 200) {
+            this.state.picktime = res.data.competeTime;
+            this.setState(this.state);
+        }else{
+            this.state.AlertOption={
+                show:true,
+                value:res.msg,
+                callback:()=>{
+                    this.state.AlertOption={
+                        show:false,
+                        value:'',
+                        callback:()=>{
+                            
+                        },
+                    }
+                    this.context.HandleRoute(7);
+                    this.setState(this.state);
+                },
+            }
+        }
+    },err=>{
+        console.log(err);
+        
+    })
+}
 submit(){
     let self = this;
-    this.state.AlertOption={
-        show:true,
-        value:'您已经没有机会了',
-        callback:()=>{
-            self.state.AlertOption={
-                show:false,
-                value:'',
-                callback:()=>{},
-            }
-            self.setState(self.state);
-        },
+    if (this.state.PickDate==null) {
+        alert('请选择一个日期！')
+        return;
+    }else if(this.state.picktime <= 0){
+        let self = this;
+        this.state.AlertOption={
+            show:true,
+            value:'您的竞猜次数已用完',
+            callback:()=>{
+                self.state.AlertOption={
+                    show:false,
+                    value:'',
+                    callback:()=>{
+                        
+                    },
+                }
+                self.context.HandleRoute(7);
+                self.setState(self.state);
+            },
+        }
+        this.setState(this.state);
+        return ;
     }
-    this.setState(this.state);
+    api.GuessDate(this.state.PickDate.format('yyyy/MM/dd') + ' ' + this.state.HourValue + ':00:00').then(res=>{
+        if (res.code == 200) {
+            this.state.guesstime +=1 ;
+            this.state.AlertOption={
+                show:true,
+                value:res.msg,
+                callback:()=>{
+                    self.state.AlertOption={
+                        show:false,
+                        value:'',
+                        callback:()=>{},
+                    }
+                    self.setState(self.state);
+                },
+            }
+            this.state.picktime = res.data.surplus;
+            this.setState(this.state);
+
+        }else{
+            this.state.AlertOption={
+                show:true,
+                value:res.msg,
+                callback:()=>{
+                    self.state.AlertOption={
+                        show:false,
+                        value:'',
+                        callback:()=>{
+                            
+                        },
+                    }
+                    self.context.HandleRoute(7);
+                    self.setState(self.state);
+                },
+            }
+            this.setState(this.state);
+        }
+    },err=>{
+
+    })
+
+    
 }
 render() {
   return (
@@ -130,11 +215,14 @@ render() {
                 <img src={buttonicon} className={style.ButtonIcon} alt="" />
             </div>
             <div className={[style.ButtonValue, "childcenter"].join(" ")} onClick={this.submit}>
-                提交
+                {this.state.guesstime==0?'提交':'再猜一次'}
             </div>
         </div>
     </div>
    )
    }
 }
+DateView.contextTypes = {
+    HandleRoute: PropTypes.func
+  };
 export default DateView

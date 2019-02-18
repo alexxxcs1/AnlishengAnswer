@@ -1,17 +1,22 @@
 import React, { Component } from 'react'
+import PropTypes from "prop-types";
 import style from './QuestionView.scss'
 import publictitlerow from 'assets/publictitlerow.png'
 import questionicon from 'assets/questionicon.png'
 import buttonicon from 'assets/buttonicon.png'
 
+import {api} from 'common/app'
+
 export class QuestionView extends Component {
 constructor(props) {
   super(props);
   this.state = {
+    onAjax:false,
       userselected:null,
   };
      this.refreshProps = this.refreshProps.bind(this);
      this.Select = this.Select.bind(this);
+     this.AnswerQuestion = this.AnswerQuestion.bind(this);
 }
 componentWillReceiveProps(nextprops) {
   this.refreshProps(nextprops);
@@ -26,6 +31,24 @@ Select(optionkey){
     this.state.userselected = optionkey;
     this.setState(this.state);
 }
+AnswerQuestion(){
+    if (this.state.onAjax) return;
+    let self = this;
+    this.state.onAjax = true;
+    this.setState(this.state);
+    api.AnswerQuestion(this.state.userselected).then(res=>{
+        if(res.code == 200){
+            self.context.HandleRoute(5);
+        }else{
+            alert(res.msg);
+        }
+        this.state.onAjax = false;
+        this.setState(this.state);
+    },err=>{
+        console.log(err);
+        
+    })
+}
 render() {
   return (
     <div className={[style.ViewBox, "childcenter childcolumn"].join(" ")}>
@@ -38,7 +61,7 @@ render() {
                     <img src={questionicon} alt=""/>
                 </div>
                 <div className={[style.QuetionValue,'childcenter childcolumn childalignstart'].join(' ')}>
-                    <p>时间穿梭回第一亿，</p>
+                    <p>3时间穿梭回第一亿，</p>
                     <p>2018年，安理申的市场策略是？</p>
                 </div>
                 
@@ -70,7 +93,7 @@ render() {
           <div className={[style.ButtonIconBox, "childcenter"].join(" ")}>
             <img src={buttonicon} className={style.ButtonIcon} alt="" />
           </div>
-          <div className={[style.ButtonValue, "childcenter"].join(" ")}>
+          <div className={[style.ButtonValue, "childcenter"].join(" ")} onClick={this.AnswerQuestion}>
             下一题
           </div>
         </div>
@@ -78,4 +101,7 @@ render() {
    )
    }
 }
+QuestionView.contextTypes = {
+    HandleRoute: PropTypes.func
+  };
 export default QuestionView

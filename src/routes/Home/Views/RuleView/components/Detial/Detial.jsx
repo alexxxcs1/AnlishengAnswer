@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from "prop-types";
 import style from './Detial.scss'
 import publictitlerow from 'assets/publictitlerow.png'
 import buttonicon from 'assets/buttonicon.png'
@@ -8,6 +9,7 @@ constructor(props) {
   super(props);
   this.state = {};
      this.refreshProps = this.refreshProps.bind(this);
+     this.next = this.next.bind(this);
 }
 componentWillReceiveProps(nextprops) {
   this.refreshProps(nextprops);
@@ -17,6 +19,9 @@ componentDidMount() {
 }
 refreshProps(props) {
   
+}
+next(){
+  this.context.HandleRoute(2);
 }
 render() {
   return (
@@ -34,7 +39,7 @@ render() {
           <div className={[style.ButtonIconBox, "childcenter"].join(" ")}>
             <img src={buttonicon} className={style.ButtonIcon} alt="" />
           </div>
-          <div className={[style.ButtonValue, "childcenter"].join(" ")}>
+          <div className={[style.ButtonValue, "childcenter"].join(" ")} onClick={this.next}>
             我已了解规则
           </div>
         </div>
@@ -42,4 +47,7 @@ render() {
    )
    }
 }
+Detial.contextTypes = {
+  HandleRoute: PropTypes.func
+};
 export default Detial

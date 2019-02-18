@@ -162,7 +162,7 @@ render() {
             </div>
             <div className={[style.HandleArrow,style.rotate].join(' ')} onClick={this.ChangeMonth.bind(this,1)}></div>
         </div>
-        <div className={[style.WeekGroup,'childcenter'].join(' ')}>
+        <div className={[style.WeekGroup,'childcenter '].join(' ')}>
             <div className={[style.DayBox,style.WeekName,'childcenter'].join(' ')}>Su</div>
             <div className={[style.DayBox,style.WeekName,'childcenter'].join(' ')}>Mo</div>
             <div className={[style.DayBox,style.WeekName,'childcenter'].join(' ')}>Tu</div>
@@ -171,7 +171,7 @@ render() {
             <div className={[style.DayBox,style.WeekName,'childcenter'].join(' ')}>Fr</div>
             <div className={[style.DayBox,style.WeekName,'childcenter'].join(' ')}>Sa</div>
         </div>
-        <div className={[style.DayGroup,'childcenter childcontentstart'].join(' ')}>
+        <div className={[style.DayGroup,'childcenter'].join(' ')}>
             {this.createBeforeDay()}
             {this.createDay()}
             {this.createAfterDay()}
