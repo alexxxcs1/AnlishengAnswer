@@ -27,6 +27,13 @@ const AskPost = (ajaxinstance) => {
     customer.getCountTime = () => {
       return ajaxinstance.post('Second/getCountTime');
     }
+    customer.getIsOpen = () => {
+      return ajaxinstance.post('Second/isOpen');
+    }
+    customer.getRedpack = () => {
+      return ajaxinstance.post('Second/addRedPacket');
+    }
+    
     return customer
   }
   

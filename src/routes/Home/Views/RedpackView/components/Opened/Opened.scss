@@ -1,0 +1,99 @@
+.realredpack{
+    width: 576px;
+    height: 805px;
+    background: #ec523e;
+    border-radius: 74px 74px 26px 26px;
+    position: relative;
+    .letterbox{
+        margin-top: -88px;
+        width: 494px;
+        height: 100%;
+        overflow: hidden;
+    }
+    .RMBtext{
+        width: 494px;
+        height: 700px;
+        
+        background: #fef1e0;
+        color: #e54c3f;
+        border-radius: 11px;
+        box-shadow: rgba($color: #000000, $alpha: 0.3) 0 0 30px ;
+        position: relative;
+        animation: slideIn 0.5s forwards;
+        .poniter{
+            width: 32px;
+            height: 32px;
+            display: block;
+            margin:0 34px;
+        }
+        span:nth-child(1){
+            font-size: 65px;
+            color: #b57732;
+            margin-top: 52px;
+        }
+        span:nth-child(2){
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            font-weight: bold;
+            font-size: 153px;
+        }
+        span:nth-child(3){
+            font-size: 51px;
+        }
+
+        &::after{
+            position: absolute;
+            content: '';
+            width: 459px;
+            height: calc(100% - 36px);
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%);
+            border-radius: 11px;
+            box-shadow: #e3c799 0 0 0 2px inset;
+        }
+        &::before{
+            position: absolute;
+            content: '';
+            width: 442px;
+            height: calc(100% - 52px);
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%);
+            border-radius: 12px;
+            box-shadow: #e3c799 0 0 0 2px inset;
+        }
+    }
+    @keyframes slideIn {
+        0%{
+            transform: translateY(100%)
+        }
+        100%{
+            transform: translateY(0%)
+        }
+    }
+    .redpackbot{
+        width: 100%;
+        position: absolute;
+        bottom: 0px;
+        left: 0px;
+        z-index: 2;
+        .ReturnButton{
+            position: absolute;
+            bottom: 150px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: calc(113px / 2);
+            box-shadow: #ffe5b3 0 -8px 0,#efac2e 0 8px 0;
+            color: #a17836;
+            width:447px;
+            height: 113px; 
+            background: #ffdb7b;
+            font-size: 48px;
+        }
+        .redpackbkg{
+        width: 100%;
+        
+    }
+    }
+    
+}

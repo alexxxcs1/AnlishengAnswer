@@ -12,6 +12,7 @@ import QuestionViewFour from "./Views/QuestionViewFour";
 import QuestionViewFive from "./Views/QuestionViewFive";
 import ResultView from "./Views/ResultView";
 import DateView from "./Views/DateView";
+import RedpackView from "./Views/RedpackView";
 
 import {api} from 'common/app'
 
@@ -84,9 +85,11 @@ export class Home extends Component {
         }
         return <QuestionViewFive />;
       case 7:
-        return <ResultView />
+        return <ResultView />;
       case 8:
-        return <DateView />
+        return <DateView />;
+      case 9:
+        return <RedpackView />
     }
   }
   HandleRoute(index){
