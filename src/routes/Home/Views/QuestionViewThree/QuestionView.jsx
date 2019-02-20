@@ -61,30 +61,29 @@ render() {
                     <img src={questionicon} alt=""/>
                 </div>
                 <div className={[style.QuetionValue,'childcenter childcolumn childalignstart'].join(' ')}>
-                    <p>3时间穿梭回第一亿，</p>
-                    <p>2018年，安理申的市场策略是？</p>
+                    <p>3.安理申在中国的适应症是:</p>
                 </div>
                 
             </div>
             <div className={[style.OptionBox,'childcenter childcolumn'].join(' ')}>
                 <div className={[style.Option,this.state.userselected=='A'?style.SelectedOption:''].join(' ')} Optionkey={'A'} onClick={this.Select.bind(this,'A')}>
                     <div className={[style.OptionValue,'childcenter'].join(' ')}>
-                        题目答案题目答案题目答案题目答案题目答案题目答案
+                        轻度,中度阿尔茨海默病症状的治疗
                     </div>
                 </div>
                 <div className={[style.Option,this.state.userselected=='B'?style.SelectedOption:''].join(' ')} Optionkey={'B'} onClick={this.Select.bind(this,'B')}>
                     <div className={[style.OptionValue,'childcenter'].join(' ')}>
-                        题目答案题目答案题目答案题目答案题目答案题目答案
+                        轻度,中度或重度阿尔茨海默病症状的治疗
                     </div>
                 </div>
                 <div className={[style.Option,this.state.userselected=='C'?style.SelectedOption:''].join(' ')} Optionkey={'C'} onClick={this.Select.bind(this,'C')}>
                     <div className={[style.OptionValue,'childcenter'].join(' ')}>
-                        题目答案题目答案题目答案题目答案题目答案题目答案
+                        轻度阿尔茨海默病症状的治疗
                     </div>
                 </div>
                 <div className={[style.Option,this.state.userselected=='D'?style.SelectedOption:''].join(' ')} Optionkey={'D'} onClick={this.Select.bind(this,'D')}>
                     <div className={[style.OptionValue,'childcenter'].join(' ')}>
-                        题目答案题目答案题目答案题目答案题目答案题目答案
+                        中度或者重度阿尔茨海默病症状的治疗
                     </div>
                 </div>
             </div>

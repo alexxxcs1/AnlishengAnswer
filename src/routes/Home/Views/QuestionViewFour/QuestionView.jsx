@@ -61,30 +61,29 @@ render() {
                     <img src={questionicon} alt=""/>
                 </div>
                 <div className={[style.QuetionValue,'childcenter childcolumn childalignstart'].join(' ')}>
-                    <p>4时间穿梭回第一亿，</p>
-                    <p>2018年，安理申的市场策略是？</p>
+                    <p>4.安理申2018财年全国销售指标是多少？</p>
                 </div>
                 
             </div>
             <div className={[style.OptionBox,'childcenter childcolumn'].join(' ')}>
                 <div className={[style.Option,this.state.userselected=='A'?style.SelectedOption:''].join(' ')} Optionkey={'A'} onClick={this.Select.bind(this,'A')}>
                     <div className={[style.OptionValue,'childcenter'].join(' ')}>
-                        题目答案题目答案题目答案题目答案题目答案题目答案
+                        5.54亿
                     </div>
                 </div>
                 <div className={[style.Option,this.state.userselected=='B'?style.SelectedOption:''].join(' ')} Optionkey={'B'} onClick={this.Select.bind(this,'B')}>
                     <div className={[style.OptionValue,'childcenter'].join(' ')}>
-                        题目答案题目答案题目答案题目答案题目答案题目答案
+                        5.32亿
                     </div>
                 </div>
                 <div className={[style.Option,this.state.userselected=='C'?style.SelectedOption:''].join(' ')} Optionkey={'C'} onClick={this.Select.bind(this,'C')}>
                     <div className={[style.OptionValue,'childcenter'].join(' ')}>
-                        题目答案题目答案题目答案题目答案题目答案题目答案
+                        5.77亿
                     </div>
                 </div>
                 <div className={[style.Option,this.state.userselected=='D'?style.SelectedOption:''].join(' ')} Optionkey={'D'} onClick={this.Select.bind(this,'D')}>
                     <div className={[style.OptionValue,'childcenter'].join(' ')}>
-                        题目答案题目答案题目答案题目答案题目答案题目答案
+                        6.04亿
                     </div>
                 </div>
             </div>

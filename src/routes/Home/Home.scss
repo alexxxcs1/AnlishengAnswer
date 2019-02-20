@@ -7,7 +7,46 @@
     height: 100%;
     background: radial-gradient(farthest-side at 50% 10% ,#fff,#fffbfc 60%,#ffe9ed);
     position: relative;
+    .toplogo{
+        width: 100%;
+        display: block;
+        position: absolute;
+        top: 30px;
+        left: 0px;
+        z-index: 99;
+    }
+    .MusicButton{
+        width: 80px;
+        height: 80px;
+        position: fixed;
+        z-index: 100;
+        top: 120px;
+        right: 50px;
+        border-radius: 50%;
 
+        img{
+            width: 100%;
+        }
+    }
+    .MusicOn{
+        animation: musicwave 0.4s infinite ease-in-out;
+    }
+    .MusicOff{
+        filter: grayscale(100%);
+    }
+    @keyframes musicwave {
+        0%{
+            // rgba($color: #b30706, $alpha: 0.3)
+            box-shadow: rgba($color: #b30706, $alpha: 0.3) 0 0 5px 2px,#fff 0 0 0 4px,rgba($color: #b30706, $alpha: 0.2) 0 0 5px 6px,#fff 0 0 0 8px,rgba($color: #b30706, $alpha: 0.1) 0 0 5px 10px;
+        }
+        50%{
+            box-shadow: rgba($color: #b30706, $alpha: 0.3) 0 0 5px 4px,#fff 0 0 0 8px,rgba($color: #b30706, $alpha: 0.2) 0 0 5px 12px,#fff 0 0 0 16px,rgba($color: #b30706, $alpha: 0.1) 0 0 5px 20px;
+        }
+        100%{
+            // rgba($color: #b30706, $alpha: 0.3)
+            box-shadow: rgba($color: #b30706, $alpha: 0.3) 0 0 5px 2px,#fff 0 0 0 4px,rgba($color: #b30706, $alpha: 0.2) 0 0 5px 6px,#fff 0 0 0 8px,rgba($color: #b30706, $alpha: 0.1) 0 0 5px 10px;
+        }
+    }
     .Content{
         width: 100%;
         height: 100%;

@@ -14,21 +14,30 @@ import ResultView from "./Views/ResultView";
 import DateView from "./Views/DateView";
 import RedpackView from "./Views/RedpackView";
 
+import ShareBox from 'components/ShareBox'
+import bkgmusic from 'assets/bkgmusic.m4a'
+import music from 'assets/music.png'
+import toplogo from 'assets/toplogo.png'
+
 import {api} from 'common/app'
 
 export class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      MusicOn:true,
       stageStatus:0,
     };
     this.customRoute = this.customRoute.bind(this);
     this.HandleRoute = this.HandleRoute.bind(this);
     this.isLogin = this.isLogin.bind(this);
+    this.audioAutoPlay = this.audioAutoPlay.bind(this);
+    this.HandleMusic = this.HandleMusic.bind(this);
   }
   componentDidMount() {
     this.isLogin();
     this.getQuesionGrade();
+    this.audioAutoPlay();
     window.document.body.addEventListener(
       "touchmove",
       function(e) {
@@ -106,7 +115,7 @@ export class Home extends Component {
         this.setState(this.state);
       }else{
         if (res.code == 203) {
-          window.location.href = res.data;
+          // window.location.href = res.data;
         }else if(res.code == 202){
           this.state.stageStatus = 0;
           this.setState(this.state);
@@ -130,9 +139,47 @@ export class Home extends Component {
       
     })
   }
+  audioAutoPlay() {
+    var audio = this.refs.music;
+    let self = this;
+    document.addEventListener(
+      "WeixinJSBridgeReady",
+      function() {
+        audio.currentTime = 0.0;
+        audio.play();
+      },
+      false
+    );
+    document.addEventListener(
+      "YixinJSBridgeReady",
+      function() {
+        audio.currentTime = 0.0;
+        audio.play();
+      },
+      false
+    );
+  }
+  HandleMusic(boolean){
+    console.log(boolean);
+    
+    if (boolean) {
+      this.refs.music.play();
+      
+    }else{
+      this.refs.music.pause();
+    }
+    this.state.MusicOn = boolean;
+    this.setState(this.state);
+  }
   render() {
     return (
       <div className={style.Box}>
+        <ShareBox />
+        <img src={toplogo} className={style.toplogo} alt=""/>
+        <audio src={bkgmusic} ref={'music'} style={{display:'none'}}></audio>
+        <div className={[style.MusicButton,this.state.MusicOn?style.MusicOn:style.MusicOff].join(' ')} onClick={this.HandleMusic.bind(this,!this.state.MusicOn)}>
+            <img src={music} alt=""/>
+        </div>
         <div className={style.Content}>
           {this.customRoute()}
         </div>

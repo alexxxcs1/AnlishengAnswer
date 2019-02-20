@@ -61,30 +61,29 @@ render() {
                     <img src={questionicon} alt=""/>
                 </div>
                 <div className={[style.QuetionValue,'childcenter childcolumn childalignstart'].join(' ')}>
-                    <p>5时间穿梭回第一亿，</p>
-                    <p>2018年，安理申的市场策略是？</p>
+                    <p>5.安理申全国市场份额是多少?(IMS数据2018Q3MAT)</p>
                 </div>
                 
             </div>
             <div className={[style.OptionBox,'childcenter childcolumn'].join(' ')}>
                 <div className={[style.Option,this.state.userselected=='A'?style.SelectedOption:''].join(' ')} Optionkey={'A'} onClick={this.Select.bind(this,'A')}>
                     <div className={[style.OptionValue,'childcenter'].join(' ')}>
-                        题目答案题目答案题目答案题目答案题目答案题目答案
+                        49.8%
                     </div>
                 </div>
                 <div className={[style.Option,this.state.userselected=='B'?style.SelectedOption:''].join(' ')} Optionkey={'B'} onClick={this.Select.bind(this,'B')}>
                     <div className={[style.OptionValue,'childcenter'].join(' ')}>
-                        题目答案题目答案题目答案题目答案题目答案题目答案
+                       48.5%
                     </div>
                 </div>
                 <div className={[style.Option,this.state.userselected=='C'?style.SelectedOption:''].join(' ')} Optionkey={'C'} onClick={this.Select.bind(this,'C')}>
                     <div className={[style.OptionValue,'childcenter'].join(' ')}>
-                        题目答案题目答案题目答案题目答案题目答案题目答案
+                        50.5%
                     </div>
                 </div>
                 <div className={[style.Option,this.state.userselected=='D'?style.SelectedOption:''].join(' ')} Optionkey={'D'} onClick={this.Select.bind(this,'D')}>
                     <div className={[style.OptionValue,'childcenter'].join(' ')}>
-                        题目答案题目答案题目答案题目答案题目答案题目答案
+                        49.3%
                     </div>
                 </div>
             </div>

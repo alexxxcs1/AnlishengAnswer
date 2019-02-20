@@ -33,6 +33,11 @@ const AskPost = (ajaxinstance) => {
     customer.getRedpack = () => {
       return ajaxinstance.post('Second/addRedPacket');
     }
+    customer.getShare = (url) => {
+      return ajaxinstance.post('index/getWeChat',qs.stringify({
+        url
+      }));
+    }
     
     return customer
   }
