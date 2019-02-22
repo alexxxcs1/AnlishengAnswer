@@ -63,8 +63,8 @@ render() {
                     抢红包
                 </div>
             </div>
-            <div className={[style.Button,'childcenter'].join(' ')} onClick={this.GuessDate}>
-                <div className={[style.ButtonIconBox, "childcenter"].join(" ")} >
+            <div className={[style.Button,'childcenter'].join(' ')}>
+                <div className={[style.ButtonIconBox, "childcenter"].join(" ")} onClick={this.GuessDate}>
                     <img src={buttonicon} className={style.ButtonIcon} alt="" />
                 </div>
                 <div className={[style.ButtonValue, "childcenter"].join(" ")} >
