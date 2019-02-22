@@ -176,7 +176,7 @@ export class Home extends Component {
       <div className={style.Box}>
         <ShareBox />
         <img src={toplogo} className={style.toplogo} alt=""/>
-        <audio src={bkgmusic} ref={'music'} style={{display:'none'}}></audio>
+        <audio src={bkgmusic} ref={'music'} style={{display:'none'}} loop></audio>
         <div className={[style.MusicButton,this.state.MusicOn?style.MusicOn:style.MusicOff].join(' ')} onClick={this.HandleMusic.bind(this,!this.state.MusicOn)}>
             <img src={music} alt=""/>
         </div>
