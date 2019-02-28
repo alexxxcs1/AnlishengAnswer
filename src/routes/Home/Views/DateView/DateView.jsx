@@ -81,6 +81,10 @@ getPickTime(){
     api.getCountTime().then(res=>{
         console.log(res);
         if (res.code == 200) {
+            if (res.data.competeTime <= 0) {
+                this.context.HandleRoute(10);
+                this.setState(this.state);
+            }
             this.state.picktime = res.data.competeTime;
             this.setState(this.state);
         }else{
@@ -95,7 +99,7 @@ getPickTime(){
                             
                         },
                     }
-                    this.context.HandleRoute(7);
+                    this.context.HandleRoute(10);
                     this.setState(this.state);
                 },
             }
@@ -123,7 +127,7 @@ submit(){
                         
                     },
                 }
-                self.context.HandleRoute(7);
+                self.context.HandleRoute(10);
                 self.setState(self.state);
             },
         }
@@ -137,12 +141,16 @@ submit(){
                 show:true,
                 value:res.msg,
                 callback:()=>{
+                    if (res.data.surplus == 0) {
+                        self.context.HandleRoute(10);
+                    }
                     self.state.AlertOption={
                         show:false,
                         value:'',
                         callback:()=>{},
                     }
                     self.setState(self.state);
+                    
                 },
             }
             this.state.picktime = res.data.surplus;
@@ -160,7 +168,7 @@ submit(){
                             
                         },
                     }
-                    self.context.HandleRoute(7);
+                    self.context.HandleRoute(10);
                     self.setState(self.state);
                 },
             }

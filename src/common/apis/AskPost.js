@@ -38,6 +38,10 @@ const AskPost = (ajaxinstance) => {
         url
       }));
     }
+    customer.getCompeteList = () => {
+      return ajaxinstance.post('second/getCompeteList');
+    }
+    
     
     return customer
   }

@@ -13,6 +13,7 @@ import QuestionViewFive from "./Views/QuestionViewFive";
 import ResultView from "./Views/ResultView";
 import DateView from "./Views/DateView";
 import RedpackView from "./Views/RedpackView";
+import PickListView from "./Views/PickListView";
 
 import ShareBox from 'components/ShareBox'
 import bkgmusic from 'assets/bkgmusic.m4a'
@@ -98,7 +99,9 @@ export class Home extends Component {
       case 8:
         return <DateView />;
       case 9:
-        return <RedpackView />
+        return <RedpackView />;
+      case 10:
+        return <PickListView />
     }
   }
   HandleRoute(index){
@@ -115,7 +118,7 @@ export class Home extends Component {
         this.setState(this.state);
       }else{
         if (res.code == 203) {
-          // window.location.href = res.data;
+          window.location.href = res.data;
         }else if(res.code == 202){
           this.state.stageStatus = 0;
           this.setState(this.state);
